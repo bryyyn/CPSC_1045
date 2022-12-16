@@ -1,0 +1,44 @@
+body {
+    background-image: url('../images/background.jpg');
+}
+
+caption {
+    font-size: 40px;
+    font-weight: bold;
+    color: darkred;
+    text-align: left;
+}
+
+#img-apple {
+    width: 300px;
+    height: 200px;
+}
+#img-grape {
+    width: 300px;
+    height: 200px;
+}
+#img-persimmon {
+    width: 200px;
+    height: 200px;
+}
+#img-apricot {
+    width: 200px;
+    height: 200px;
+}
+#img-pomegranate {
+    width: 600px;
+    height: 350px;
+}
+#img-banana {
+    width: 200px;
+    height: 350px;
+}
+#img-mango {
+    width: 200px;
+    height: 350px;
+}
+p {
+    font-size: 26px;
+    color: navy;
+    font-style: italic;
+}
