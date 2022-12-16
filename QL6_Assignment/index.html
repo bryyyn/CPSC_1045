@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Multiples Table</title>
+        
+    </head>
+    <body>
+        <!-- Code goes here -->
+        <canvas id="myCanvas" width="600px" height="600px" style="border-style: solid;">
+        </canvas>
+
+        <!-- Style For Question 1 -->
+        <style>
+            #removeMe {
+                border: none;
+                border-top-style: hidden!important;
+                border-left-style: hidden!important;
+            }
+            
+        </style>
+        <script>
+
+            //================ For question 2 ============================//
+
+            let c3 = document.getElementById("myCanvas").getContext("2d");
+
+
+            c3.translate(300,300); //change cordinate system
+           // c1.arc(0,0,100,0,2*Math.PI);
+           
+
+            c3.fillStyle = "orange";
+
+            c3.beginPath();
+            //make left side
+            c3.stroke.style = "black";
+            c3.moveTo(-40,100);
+            c3.bezierCurveTo(-40,100,-200,0,-40,-100);
+            
+            // make right side
+            c3.moveTo(40,100);
+            c3.bezierCurveTo(40,100,200,0,40,-100);
+
+            //make top 
+            c3.moveTo(-40,-100);
+            c3.bezierCurveTo(-40,-100,-28,-112,-16,-100);
+            c3.bezierCurveTo(-16,-100,-2,-112,10,-100);
+            c3.bezierCurveTo(10,-100,22,-112,40,-100);
+
+            // make bottom
+            c3.moveTo(-40,100);
+            c3.bezierCurveTo(-40,100,-28,112,-16,100);
+            c3.bezierCurveTo(-16,100,-2,112,10,100);
+            c3.bezierCurveTo(10,100,22,112,40,100);
+
+            //fill middle
+            c3.fillRect(-40,-100,80,200);
+            c3.fill();
+            c3.closePath();
+
+            // make stem 
+            c3.beginPath();
+            c3.moveTo(-4,-105);
+            c3.bezierCurveTo(-4,-108,-6,-122,-4,-132,2,-142);
+            c3.lineTo(6,-142);
+            c3.lineTo(6,-132);
+            c3.bezierCurveTo(6,-132,0,-122,6,-102);
+            c3.fillStyle = "green";
+            c3.fill();
+            c3.closePath();
+
+            // left eyes
+            c3.beginPath()
+            c3.moveTo(-40,-25);
+            c3.lineTo(-55,-25);
+            c3.arc(-40,-25,20, 0, Math.PI,true);
+            c3.fillStyle = "black";
+            c3.fill();
+            c3.closePath();
+            
+            //right eye
+            c3.translate(80,0);
+            c3.beginPath()
+            c3.moveTo(-40,-25);
+            c3.lineTo(-55,-25);
+            c3.arc(-40,-25,20, 0, Math.PI,true);
+            c3.fillStyle = "black";
+            c3.fill();
+            c3.closePath();
+
+
+            //make mouth
+            c3.translate(-80,0);
+            c3.beginPath();
+            c3.moveTo(-70,40);
+            c3.lineTo(-50,55);
+            c3.lineTo(-30,50);
+            c3.lineTo(-10,55);
+            c3.lineTo(10,50);
+            c3.lineTo(30,55);
+            c3.lineTo(50,50);
+            c3.lineTo(70,40);
+            c3.lineTo(50,45);
+            c3.lineTo(30,40);
+            c3.lineTo(10,45);
+            c3.lineTo(-10,40);
+            c3.lineTo(-30,45);
+            c3.lineTo(-50,50);
+            c3.fillStyle = "black";
+            c3.fill();
+            c3.closePath();
+
+            // make nose
+            c3.beginPath()
+            c3.moveTo(-10,20);
+            c3.lineTo(10,20);
+            c3.lineTo(0,-10);
+            c3.lineTo(-10,20);
+            c3.fillStyle = "black";
+            c3.fill();
+            c3.closePath();
+            
+            c3.stroke();
+            //============================= End of Question 2 ==============//
+
+
+
+
+            //==================== For Question 1 =============================//
+
+            //get userInput
+            let validInput = false;
+            let input;
+            do {
+                input = +prompt("Enter a positive Integer: ");
+                if(input > 0){
+                    validInput = true;
+                }
+            }while(!validInput);
+            
+
+
+            //check for valid input
+            
+
+            //create tabel and tablebody in body element
+            let myTable = document.createElement("table");
+            let tableBody = document.createElement("tbody");
+
+            // formatting table //
+            //create rows
+            for(let i =0; i <= input; i++){
+
+                let row = document.createElement("tr");
+
+                //create cells
+                for(let j=0; j <= input; j++){
+
+            
+                    if(i==0 && j >0){// create heading for column
+                        let cell = document.createElement("th");
+                        //create text node
+                        let tNode = document.createTextNode(j);
+                        //append text to cell
+                        cell.appendChild(tNode);
+                        //append cell to row
+                        row.appendChild(cell);
+                    }
+            
+                    else if(j==0 && i > 0){ // create heading for row
+                        let cell = document.createElement("th");
+                        let tNode = document.createTextNode(i);
+                        cell.appendChild(tNode);
+                        row.appendChild(cell);
+                    }
+
+                    else { // create rest of cells
+                        let cell = document.createElement("td");
+                        let tNode = document.createTextNode(i*j);
+                        cell.appendChild(tNode);
+                        row.appendChild(cell);
+                    }
+                         
+                }
+                //append row to table body
+                tableBody.appendChild(row);
+            }
+            //append table body to table
+            myTable.appendChild(tableBody);
+            myTable.setAttribute("id", "mTable");
+
+            //append table to body element
+            document.body.appendChild(myTable);
+
+            //style table
+            myTable.setAttribute("border","1");
+            myTable.style.borderCollapse = "collapse"; 
+            myTable.style.borderColor = "blue";
+            myTable.style.borderSpacing = "10px";
+
+
+
+            //finding child node
+            //console.log(document.getElementById("mTable").childNodes[0].childNodes[0].childNodes[0]);
+            let node = document.getElementById("mTable").childNodes[0].childNodes[0].childNodes[0];
+
+            //remove text node and make border none
+            let text = node.childNodes[0];
+            node.removeChild(text);
+            node.setAttribute("id", "removeMe");
+            let x = document.getElementById("removeMe");
+            
+            console.log(x);
+
+
+
+
+            //document.getElementById("firstCell")
+            console.log(document.getElementById("mTable").childNodes[0].childNodes[0].childNodes[0]);
+
+
+        </script>
+    </body>
+</html>
